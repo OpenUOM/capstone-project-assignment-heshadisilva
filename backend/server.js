@@ -1,20 +1,17 @@
 const express = require ("express");
-import express from "express";
-import bodyParser from "body-parser";
-import {
-    initializeDatabase,
-    readTeachers,
-    readStudents,
-    readTeacherInfo,
-    readStudentInfo,
-    addTeacher,
-    addStudent,
-    deleteTeacher,
-    deleteStudent,
-    updateStudent,
-    updateTeacher,
-
-} from "./database.js";
+const {
+  readTeachers,
+  readStudents,
+  addStudent,
+  addTeacher,
+  deleteTeacher,
+  deleteStudent,
+  readStudentInfo,
+  readTeacherInfo,
+  updateStudent,
+  updateTeacher,
+  dbinitialize
+} = require ("./database.js");
 
 
 
@@ -42,9 +39,6 @@ app.get("/listTeachers", async function (req, res) {
 
 app.post("/getTeacherInfo", async function (req, res) {
   let reqBody = req.body;
-  {
-    "id"; "teacher_id"
-  }
   console.log("Request received to get Teacher Info");
   let data = await readTeacherInfo(reqBody.id);
 
@@ -54,11 +48,6 @@ app.post("/getTeacherInfo", async function (req, res) {
 
 app.post("/addTeacher", async function (req, res) {
   let reqBody = req.body;
-  {
-    "id"; "teacher_id",
-    "name"; "teacher_name",
-    "age"; "teacher_age"
-  }
   console.log(
     "Request received to add teacher. Req body: " + JSON.stringify(reqBody)
   );
@@ -70,11 +59,6 @@ app.post("/addTeacher", async function (req, res) {
 
 app.post("/editTeacher", async function (req, res) {
   let reqBody = req.body;
-  {
-    "name"; "teacher_name",
-    "age"; "teacher_age",
-    "id"; "teacher_id"
-  }
   console.log(
     "Request received to update teacher. Req body: " + JSON.stringify(reqBody)
   );
@@ -86,9 +70,6 @@ app.post("/editTeacher", async function (req, res) {
 
 app.post("/deleteTeacher", async function (req, res) {
   let reqBody = req.body;
-  {
-    "id"; "teacher_id"
-  }
   console.log(
     "Request received to delete teacher. Req body: " + JSON.stringify(reqBody)
   );
